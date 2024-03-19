@@ -63,15 +63,15 @@ int main(int argc, char * argv[])
 
     // Move to object
     xarm_pose = move_group_xarm.getCurrentPose();
-    xarm_pose.pose=object_pose.pose;
+    // xarm_pose.pose=object_pose.pose;
 
-	tf2::Quaternion q_orig, q_rot, q_new;
-    tf2::convert(xarm_pose.pose.orientation , q_orig);
-    double r=3.14159, p=0, y=0;  // Rotate the previous pose by 180* about X
-    q_rot.setRPY(r, p, y);
-    q_new = q_rot*q_orig;  // Calculate the new orientation
-    q_new.normalize();
-    tf2::convert(q_new, xarm_pose.pose.orientation);
+	// tf2::Quaternion q_orig, q_rot, q_new;
+    // tf2::convert(xarm_pose.pose.orientation , q_orig);
+    // double r=3.14159, p=0, y=0;  // Rotate the previous pose by 180* about X
+    // q_rot.setRPY(r, p, y);
+    // q_new = q_rot*q_orig;  // Calculate the new orientation
+    // q_new.normalize();
+    // tf2::convert(q_new, xarm_pose.pose.orientation);
 
 	xarm_pose.pose.position.x = object_pose.pose.position.x;
 	xarm_pose.pose.position.y = object_pose.pose.position.y;
