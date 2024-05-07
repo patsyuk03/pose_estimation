@@ -11,10 +11,10 @@
         <arg name="camera_info_topic" value="/camera/color/camera_info"/>
         <arg name="objects_path" value="$(find pose_estimation)/objects"/>
         <arg name="gui" value="false"/>
-        <arg name="tf_example" value="true"/>
+        <arg name="tf_example" value="false"/>
     </include>
 
-    <!-- <node name="transform_coords" pkg="pose_estimation" type="transform_coords.py" output="screen"/> -->
+    <node name="transform_coords" pkg="pose_estimation" type="transform_coords.py" output="screen"/>
 
     <node type="rviz" name="rviz" pkg="rviz" args="-d $(find pose_estimation)/rviz/rviz.rviz" />
 </launch>
