@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /TF1
       Splitter Ratio: 0.5
     Tree Height: 355
   - Class: rviz/Selection
@@ -82,7 +83,15 @@ Visualization Manager:
           Value: false
         camera_link:
           Value: true
+        fork:
+          Value: true
+        gear:
+          Value: true
         map:
+          Value: false
+        object_46:
+          Value: false
+        object_54:
           Value: false
       Marker Alpha: 1
       Marker Scale: 1
@@ -95,7 +104,14 @@ Visualization Manager:
           camera_link:
             camera_aligned_depth_to_color_frame:
               camera_color_optical_frame:
-                {}
+                fork:
+                  {}
+                gear:
+                  {}
+                object_46:
+                  {}
+                object_54:
+                  {}
             camera_color_frame:
               {}
             camera_depth_frame:
@@ -108,7 +124,7 @@ Visualization Manager:
       Axes Radius: 0.009999999776482582
       Class: rviz/Pose
       Color: 255; 25; 0
-      Enabled: true
+      Enabled: false
       Head Length: 0.30000001192092896
       Head Radius: 0.10000000149011612
       Name: Pose
@@ -118,7 +134,7 @@ Visualization Manager:
       Shape: Axes
       Topic: /pose_stamped
       Unreliable: false
-      Value: true
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -163,9 +179,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.375397652387619
+      Pitch: 0.3803980052471161
       Target Frame: <Fixed Frame>
-      Yaw: 3.4504213333129883
+      Yaw: 3.270423412322998
     Saved: ~
 Window Geometry:
   Displays:
@@ -186,4 +202,4 @@ Window Geometry:
     collapsed: false
   Width: 1200
   X: 573
-  Y: 36
+  Y: 27

@@ -16,6 +16,6 @@
 
     <node name="transform_coords" pkg="pose_estimation" type="transform_coords.py" output="screen"/>
 
-    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find pose_estimation)/rviz/rviz.rviz" />
+    <!-- <node type="rviz" name="rviz" pkg="rviz" args="-d $(find pose_estimation)/rviz/rviz.rviz" /> -->
 </launch>
 
