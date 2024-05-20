@@ -8,8 +8,13 @@ from std_msgs.msg import String
 
 def get_object_name(obj):
     objects = {
-        "object_54": "fork",
-        "object_46": "gear",
+        "object_1": "gear",
+        "object_2": "fork",
+        "object_3": "fork",
+        "object_4": "fork",
+        "object_5": "fork",
+        "object_7": "fork",
+        "object_8": "fork",
     }
     if obj in list(objects.keys()):
         return objects[obj]

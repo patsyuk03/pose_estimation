@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 355
   - Class: rviz/Selection
@@ -89,9 +90,13 @@ Visualization Manager:
           Value: true
         map:
           Value: false
-        object_46:
+        object_1:
           Value: false
-        object_54:
+        object_3:
+          Value: false
+        object_6:
+          Value: false
+        object_9:
           Value: false
       Marker Alpha: 1
       Marker Scale: 1
@@ -108,9 +113,13 @@ Visualization Manager:
                   {}
                 gear:
                   {}
-                object_46:
+                object_1:
                   {}
-                object_54:
+                object_3:
+                  {}
+                object_6:
+                  {}
+                object_9:
                   {}
             camera_color_frame:
               {}
@@ -163,7 +172,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.8240156173706055
+      Distance: 2.4717061519622803
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -179,9 +188,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3803980052471161
+      Pitch: 0.35539767146110535
       Target Frame: <Fixed Frame>
-      Yaw: 3.270423412322998
+      Yaw: 3.7004430294036865
     Saved: ~
 Window Geometry:
   Displays:
