@@ -76,9 +76,10 @@ Deep Object Pose Estimation (DOPE) is using machine learning approach to find ob
 1) 3D Model creation \
 First the 3D model of the object needs to be created. This can be done using SolidWorks and exporting the resulting object in the .stl format. Then using MeshLab apply the texture (color of the object) and save as .obj, it should also generate texture.png file and .mtl. 
 
-<img src="./media/3d_model_cube.gif" width="200" height="200" />
-<img src="./media/3d_model_gear.gif" width="200" height="200" />
-
+<p align="center">
+    <img src="./media/3d_model_cube.gif" width="200" height="200" >
+    <img src="./media/3d_model_gear.gif" width="200" height="200" >
+</p>
 
 2) Data generation \
 For model training data needs to be generated. This can be done using script form [DOPE repositoty](https://github.com/NVlabs/Deep_Object_Pose.git). The process of data generation can take more then 12 hours depending on how many images are set to be generated (usualy 20000 should be enough)
