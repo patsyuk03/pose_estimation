@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>pose_estimation</name>
+  <name>find_obj</name>
   <version>0.0.0</version>
-  <description>The pose_estimation package</description>
+  <description>The find_obj package</description>
 
   <maintainer email="hurova@todo.todo">hurova</maintainer>
   <license>TODO</license>

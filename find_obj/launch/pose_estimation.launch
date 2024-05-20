@@ -1,24 +1,33 @@
 <launch>
     <arg name="rviz" default="false"/>
     <arg name="add_objects" default="false"/>
+    <arg name="height" default="0.2"/>
+    <arg name="dope" default="false"/>
+
 
     <include file="$(find realsense2_camera)/launch/rs_camera.launch" >
         <arg name="align_depth" value="true"/>
     </include>
 
-    <node unless="$(arg add_objects)" pkg="tf" type="static_transform_publisher" name="tf_camera" args="0 0 1 0 1.571 3.145 map camera_link 100" />
-
-    <include file="$(find find_object_2d)/launch/ros1/find_object_3d.launch" >
+    <include unless="$(arg dope)" file="$(find find_object_2d)/launch/ros1/find_object_3d.launch" >
         <arg name="rgb_topic" value="/camera/color/image_raw"/>
         <arg name="depth_topic" value="/camera/depth/image_rect_raw"/>
         <arg name="camera_info_topic" value="/camera/color/camera_info"/>
-        <arg name="objects_path" value="$(find pose_estimation)/objects"/>
+        <arg name="objects_path" value="$(find find_obj)/objects"/>
         <arg name="gui" value="$(arg add_objects)"/>
         <arg name="tf_example" value="false"/>
     </include>
 
-    <node unless="$(arg add_objects)" name="transform_coords" pkg="pose_estimation" type="transform_coords.py" output="screen"/>
+    <group unless="$(arg add_objects)">
+        <node pkg="tf" type="static_transform_publisher" name="tf_camera" args="0 0 $(arg height) 0 1.571 3.145 map camera_link 100" />
+        <node unless="$(arg dope)" name="transform_coords" pkg="find_obj" type="transform_coords.py" output="screen"/>
+    </group>
 
-    <node if="$(arg rviz)" type="rviz" name="rviz" pkg="rviz" args="-d $(find pose_estimation)/rviz/rviz.rviz" />
+    <include if="$(arg dope)" file="$(find dope)/launch/dope.launch" />
+
+    <group if="$(arg rviz)">
+        <node unless="$(arg dope)" type="rviz" name="rviz" pkg="rviz" args="-d $(find find_obj)/rviz/rviz.rviz" />
+        <node if="$(arg dope)" type="rviz" name="rviz" pkg="rviz" args="-d $(find find_obj)/rviz/rviz_dope.rviz" />
+    </group>
 </launch>
 

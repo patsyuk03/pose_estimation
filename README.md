@@ -11,18 +11,18 @@ This repository contains two solutions for pose estimation:
 Find object package relies on the image processing approach to estimate the location of the object in front of the camera. It takes a reference image of the object and tries to find similar points on the input image.
 
 2) Using [DOPE](https://github.com/NVlabs/Deep_Object_Pose)\
-Deep Object Pose Estimation (DOPE) relies on the machine learning approach estimate the location of the object in front of the camera. More information on branch _**dope-noetic**_.
+Deep Object Pose Estimation (DOPE) relies on the machine learning approach estimate the location of the object in front of the camera.
 
-## Setup
+### Setup
  * [Ubuntu 20.04](https://releases.ubuntu.com/focal/)
  * [ROS Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu)
  * [Jetson Nano](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit)
- * [Realsense](https://github.com/IntelRealSense/realsense-ros#installation-instructions)
+ * [RealSense](https://github.com/IntelRealSense/realsense-ros#installation-instructions)
  * [Find Object](https://github.com/introlab/find-object)
 
  <img src="./media/setup.jpg" width="300" height="400" />
 
-## Setup the workspace
+### Setup the workspace
 ```bash
 sudo apt-get install ros-$ROS_DISTRO-find-object-2d
 ```
@@ -35,16 +35,28 @@ cd ~/pose_estimation
 catkin build
 source devel/setup.bash
 ```
-The workspace contains the launch file _pose_estimation.launch_. This launch file brings up _realsense camera_ and positions it facing downwards using _static transform publisher_. Then it calls _find object_ that starts to detect objects from the image topic published by camera node. Finaly the coordinates are transformed to the correct frame and published to topic _/object_pose_ that can be visualized in RViz. 
+The workspace contains two packages for approaches described above. 
 
-### **Start Pose Estimation** 
+## Pose Estimation using Find Object
+
+### Start Pose Estimation
+The following command brings up _realsense camera_ and positions it facing downwards using _static transform publisher_. Then it calls _find object_ that starts to detect objects from the image topic published by camera node. Finaly the coordinates are transformed to the correct frame and published to topic _/object_pose_ that can be visualized in RViz. The camera's distance from the table can be modified by the _height_ argument.
 ```bash
-roslaunch pose_estimation pose_estimation.launch rviz:=true
+roslaunch pose_estimation pose_estimation.launch [rviz:=true] [height:=0.2]
 ```
 <img src="./media/demo.gif" width="690" height="380" />
 
-### **Add New Object** 
+### Add New Object
+To add new object we need to use GUI provided by find_object package. Some objects need more then one snapshots to be normally detected in different positions since this approach is heavily dependent on the lightning.  
 ```bash
 roslaunch pose_estimation pose_estimation.launch add_objects:=true
 ```
 <img src="./media/add_object.gif" width="552" height="474" />
+
+## Pose Estimation using DOPE
+
+### Start Pose Estimation
+
+```bash
+roslaunch pose_estimation pose_estimation.launch dope:=true [height:=0.2]
+```
