@@ -3,7 +3,9 @@
 The goal of the project is to estimate the location of the object using camera. In course of compleating the project two approaches were tested. First approach utilises [Find Object](https://github.com/introlab/find-object/tree/noetic-devel) ROS package to estimate objerct's position. This approach relies on image processing and does not require much time for setup, however, it is heavily dependent on fixed camera and lightsource locations. Second approach utilises Deep Object Pose Estimation ([DOPE](https://github.com/NVlabs/Deep_Object_Pose)) where object's pose is detected by a pretrained model. If the model is trained enough, the detection in case of the second approach, can be more reliable in comparison to the first one. However, the training time can take a very long time.
 
 ### Test Objects
+<p align="center">
  <img src="./media/test_objects.jpg" width="400" height="400" />
+</p>
 
 
 This repository contains two solutions for pose estimation:
@@ -20,7 +22,9 @@ Deep Object Pose Estimation (DOPE) relies on the machine learning approach estim
  * [RealSense](https://github.com/IntelRealSense/realsense-ros#installation-instructions)
  * [Find Object](https://github.com/introlab/find-object)
 
+<p align="center">
  <img src="./media/setup.jpg" width="300" height="400" />
+</p>
 
 ### Setup the workspace
 ```bash
@@ -44,22 +48,29 @@ In this approach the object is detected based on the similarities between the re
 2) Not enoiugh structure - the more there are light and dark regions the more datapoints there are for comparison. If an object has smooth surface without any shadows there will be not enough points for comparison. 
 
 ### Reference images for the Gear and Fork object 
+<p align="center">
 <img src="./media/reference_image.png" width="400" height="400" />
+  &nbsp; &nbsp; &nbsp; &nbsp;
 <img src="./media/reference_image_fork.png" width="250" height="400" />
+</p>
 
 ### Start Pose Estimation
 The following command brings up _realsense camera_ and positions it facing downwards using _static transform publisher_. Then it calls _find object_ that starts to detect objects from the image topic published by camera node. Finaly the coordinates are transformed to the correct frame and published to topic _/object_pose_ that can be visualized in RViz. The camera's distance from the table can be modified by the _height_ argument.
 ```bash
 roslaunch pose_estimation pose_estimation.launch [rviz:=true] [height:=0.2]
 ```
+<p align="center">
 <img src="./media/demo.gif" width="690" height="380" />
+</p>
 
 ### Add New Object
 To add new object we need to use GUI provided by find_object package. Some objects need more then one snapshots to be normally detected in different positions since this approach is heavily dependent on the lightning.  
 ```bash
 roslaunch pose_estimation pose_estimation.launch add_objects:=true
 ```
+<p align="center">
 <img src="./media/add_object.gif" width="552" height="474" />
+</p>
 
 ## Pose Estimation using DOPE
 ```
@@ -77,27 +88,37 @@ Deep Object Pose Estimation (DOPE) is using machine learning approach to find ob
 First the 3D model of the object needs to be created. This can be done using SolidWorks and exporting the resulting object in the .stl format. Then using MeshLab apply the texture (color of the object) and save as .obj, it should also generate texture.png file and .mtl. 
 
 <p align="center">
-    <img src="./media/3d_model_cube.gif" width="200" height="200" >
-    <img src="./media/3d_model_gear.gif" width="200" height="200" >
+ <img src="./media/3d_model_cube.gif" width="200" height="200" />
+ &nbsp; &nbsp; &nbsp; &nbsp;
+ <img src="./media/3d_model_gear.gif" width="200" height="200" />
 </p>
 
 2) Data generation \
 For model training data needs to be generated. This can be done using script form [DOPE repositoty](https://github.com/NVlabs/Deep_Object_Pose.git). The process of data generation can take more then 12 hours depending on how many images are set to be generated (usualy 20000 should be enough)
-
+<p align="center">
 <img src="./media/00003.png" width="200" height="200" />
+  &nbsp; &nbsp; &nbsp; &nbsp;
 <img src="./media/00004.png" width="200" height="200" />
+ &nbsp; &nbsp; &nbsp; &nbsp;
 <img src="./media/00005.png" width="200" height="200" />
+</p>
 
 3) Model training \
 With the generated data the model can be trained. This step is the longest and can take more then a week in total. The time depends on how mach taining data is used and for how many epoch the model is trained (usualy >60).
 
 4) Run inference \
-The inference is needed to test the model on generated data and see if it needs more training. Inference script also can be found in [DOPE repositoty](https://github.com/NVlabs/Deep_Object_Pose.git). 
+The inference is needed to test the model on generated data and see if it needs more training. Inference script also can be found in [DOPE repositoty](https://github.com/NVlabs/Deep_Object_Pose.git).
 
+<p align="center">
 <img src="./media/00002.png" width="250" height="250" />
+  &nbsp; &nbsp; &nbsp; &nbsp;
 <img src="./media/00002_belief.png" width="250" height="250" />
+</p>
+<p align="center">
 <img src="./media/00021.png" width="250" height="250" />
+  &nbsp; &nbsp; &nbsp; &nbsp;
 <img src="./media/00021_belief.png" width="250" height="250" />
+</p>
 
 5) Run pose estimatioin \
 If the results of inference are good the model can be used for pose estimation.
@@ -107,5 +128,7 @@ If the results of inference are good the model can be used for pose estimation.
 ```bash
 roslaunch pose_estimation pose_estimation.launch dope:=true [height:=0.2]
 ```
+<p align="center">
 <img src="./media/dope_demo.gif" width="598" height="438" />
+</p>
 
